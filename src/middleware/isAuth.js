@@ -16,6 +16,12 @@ export default function isAuth(req, res, next) {
       res.status(401).json({ message: "Invalid token" })
     }
   } catch (error) {
+    if (
+      error?.name === "TokenExpiredError" ||
+      error?.name === "JsonWebTokenError"
+    ) {
+      return res.status(401).json({ message: "Invalid token" })
+    }
     next(error)
   }
 }

@@ -1,12 +1,8 @@
-import morgan from "morgan"
 import connectDB from "./config/connect.js"
 import app from "./app.js"
 
 const PORT = process.env.PORT || 5005
 
-app.use(morgan("dev"))
-
-// START SERVER
 const startServer = async () => {
   await connectDB()
   app.listen(PORT, () => {
